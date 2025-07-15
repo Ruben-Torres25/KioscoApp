@@ -4,10 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KioscoApp"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:vm="clr-namespace:KioscoApp.ViewModels"
+        xmlns:views="clr-namespace:KioscoApp.Views" mc:Ignorable="d"
+        Title="Sistema de Gestión de Kiosco" Height="450" Width="800">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:ProductosViewModel}">
+            <views:ProductosView />
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
-        <TextBlock Text="¡Hola, Kiosco!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
-        <Button Content="Haz clic aquí" Width="100" Height="30" Margin="328,268,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Button Content="Productos" Command="{Binding ShowProductosViewCommand}" Margin="0,0,10,0"/>
+        </StackPanel>
+
+        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

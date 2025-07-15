@@ -1,13 +1,5 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using KioscoApp.ViewModels; // Necesario para MainViewModel
 
 namespace KioscoApp
 {
@@ -16,13 +8,11 @@ namespace KioscoApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("¡Bienvenido al sistema del Kiosco!");
-        }
-        public MainWindow()
+        // Ahora, MainWindow recibe MainViewModel a través de la inyección de dependencias
+        public MainWindow(MainViewModel mainViewModel)
         {
             InitializeComponent();
+            this.DataContext = mainViewModel; // Establece el DataContext de MainWindow al MainViewModel
         }
     }
 }
